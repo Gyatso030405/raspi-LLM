@@ -3,6 +3,7 @@
  项目目录结构说明：
 
 llm_selfie_cam/
+
 ├── chat_pi.py                 ← 网页控制主程序（FastAPI）
 
 ├── camera_stream.py           ← 摄像头视频流模块
