@@ -1,61 +1,63 @@
-ÏîÄ¿Ãû³Æ£º»ùÓÚ´óÓïÑÔÄ£ÐÍÇý¶¯µÄÊ÷Ý®ÅÉÖÇÄÜ×ÔÅÄ¿ØÖÆÏµÍ³
+é¡¹ç›®åç§°ï¼šåŸºäºŽå¤§è¯­è¨€æ¨¡åž‹é©±åŠ¨çš„æ ‘èŽ“æ´¾æ™ºèƒ½è‡ªæ‹æŽ§åˆ¶ç³»ç»Ÿ
 
- ÏîÄ¿Ä¿Â¼½á¹¹ËµÃ÷£º
+ é¡¹ç›®ç›®å½•ç»“æž„è¯´æ˜Žï¼š
 
 llm_selfie_cam/
-©À©¤©¤ chat_pi.py                 ¡û ÍøÒ³¿ØÖÆÖ÷³ÌÐò£¨FastAPI£©
-©À©¤©¤ camera_stream.py           ¡û ÉãÏñÍ·ÊÓÆµÁ÷Ä£¿é
-©À©¤©¤ models/                    ¡û ´æ·Å Qwen2.5 Ä£ÐÍ .gguf ÎÄ¼þ
-©¦   ©¸©¤©¤ qwen2.5-0.5b-instruct-q2_k.gguf
-©À©¤©¤ llama.cpp-master/          ¡û ½âÑ¹ llama.cpp ºóµÄÔ´ÂëÄ¿Â¼
-©¦   ©¸©¤©¤ build/bin/llama-server£¨±àÒëºóÉú³É£©
-©À©¤©¤ photo/                     ¡û ÅÄÕÕÍ¼Æ¬±£´æÄ¿Â¼
-©À©¤©¤ run_llm.sh                 ¡û  Æô¶¯±¾µØ´óÄ£ÐÍ
-©À©¤©¤ run_web.sh                 ¡û  Æô¶¯ÍøÒ³·þÎñ
-©¸©¤©¤ run_all.sh                 ¡û  Ò»¼üÆô¶¯Ä£ÐÍ + ÍøÒ³·þÎñ
+â”œâ”€â”€ chat_pi.py                 â† ç½‘é¡µæŽ§åˆ¶ä¸»ç¨‹åºï¼ˆFastAPIï¼‰
+â”œâ”€â”€ camera_stream.py           â† æ‘„åƒå¤´è§†é¢‘æµæ¨¡å—
+â”œâ”€â”€ models/                    â† å­˜æ”¾ Qwen2.5 æ¨¡åž‹ .gguf æ–‡ä»¶
+â”‚   â””â”€â”€ qwen2.5-0.5b-instruct-q2_k.gguf
+â”œâ”€â”€ llama.cpp-master/          â† è§£åŽ‹ llama.cpp åŽçš„æºç ç›®å½•
+â”‚   â””â”€â”€ build/bin/llama-serverï¼ˆç¼–è¯‘åŽç”Ÿæˆï¼‰
+â”œâ”€â”€ photo/                     â† æ‹ç…§å›¾ç‰‡ä¿å­˜ç›®å½•
+â”œâ”€â”€ run_llm.sh                 â†  å¯åŠ¨æœ¬åœ°å¤§æ¨¡åž‹
+â”œâ”€â”€ run_web.sh                 â†  å¯åŠ¨ç½‘é¡µæœåŠ¡
+â””â”€â”€ run_all.sh                 â†  ä¸€é”®å¯åŠ¨æ¨¡åž‹ + ç½‘é¡µæœåŠ¡
 
-•0•0 »·¾³×¼±¸£º
+ðŸ›  çŽ¯å¢ƒå‡†å¤‡ï¼š
 
-1. ´´½¨ÐéÄâ»·¾³£º
+1. åˆ›å»ºè™šæ‹ŸçŽ¯å¢ƒï¼š
    python3 -m venv ~/myenv_sys --system-site-packages
 
-2. ¼¤»îÐéÄâ»·¾³£º
+2. æ¿€æ´»è™šæ‹ŸçŽ¯å¢ƒï¼š
    source ~/myenv_sys/bin/activate
 
-3. °²×°ÒÀÀµ£º
+3. å®‰è£…ä¾èµ–ï¼š
    pip install fastapi uvicorn python-multipart openai requests -i https://pypi.org/simple
 
-4. °²×°ÏµÍ³ÒÀÀµ£¨ÈçÎ´°²×°£©£º
-   sudo apt install cmake build-essential python3-opencv -y   £¨cmakeÊÇÒ»¸öC/C++ÏîÄ¿µÄ¹¹½¨ÏµÍ³¹¤¾ß£¬ÕâÀï
-   
-   llama.cpp±àÒëÐèÒª£©
+4. å®‰è£…ç³»ç»Ÿä¾èµ–ï¼ˆå¦‚æœªå®‰è£…ï¼‰ï¼š
+   sudo apt install cmake build-essential python3-opencv -y   ï¼ˆcmakeæ˜¯ä¸€ä¸ªC/C++é¡¹ç›®çš„æž„å»ºç³»ç»Ÿå·¥å…·ï¼Œè¿™é‡Œllama.cppç¼–è¯‘éœ€è¦ï¼‰
 
- ±àÒë llama.cpp£º
+ ç¼–è¯‘ llama.cppï¼š
+ 
    unzip llama.cpp-master.zip
+   
    cd llama.cpp-master
+   
    cmake -B build -DLLAMA_CURL=OFF
+   
    cmake --build build --target llama-server --config Release
 
-  ½Å±¾Ê¹ÓÃËµÃ÷£¨Ê×´ÎÊ¹ÓÃÐè¸³ÓèÈ¨ÏÞ£©£º
+  è„šæœ¬ä½¿ç”¨è¯´æ˜Žï¼ˆé¦–æ¬¡ä½¿ç”¨éœ€èµ‹äºˆæƒé™ï¼‰ï¼š
 
    chmod +x run_web.sh run_llm.sh run_all.sh
 
-  Æô¶¯±¾µØÄ£ÐÍ£¨¶Ë¿Ú 8080£©£º
+  å¯åŠ¨æœ¬åœ°æ¨¡åž‹ï¼ˆç«¯å£ 8080ï¼‰ï¼š
     ./run_llm.sh
 
-  Æô¶¯ÍøÒ³·þÎñ£¨¶Ë¿Ú 8000£©£º
+  å¯åŠ¨ç½‘é¡µæœåŠ¡ï¼ˆç«¯å£ 8000ï¼‰ï¼š
     ./run_web.sh
 
-  Ò»¼üÔËÐÐ£¨ÍÆ¼ö£©£º
+  ä¸€é”®è¿è¡Œï¼ˆæŽ¨èï¼‰ï¼š
    ./run_all.sh
 
-  È»ºóÓÃä¯ÀÀÆ÷·ÃÎÊ£º
-http://<Ê÷Ý®ÅÉIP>:8000
+  ç„¶åŽç”¨æµè§ˆå™¨è®¿é—®ï¼š
+http://<æ ‘èŽ“æ´¾IP>:8000
 
-ÊäÈë×ÔÈ»ÓïÑÔÖ¸Áî£¬Èç£º
-- Çë°ïÎÒÅÄÕÅÕÕÆ¬
-- ÉãÏñÍ·Ïò×ó×ª
-- ÅÄÒ»ÕÅ·ç¾°ÕÕ
-ÏµÍ³»áÍ¨¹ý´óÄ£ÐÍ½âÎö³ö JSON Ö¸Áî²¢¿ØÖÆ¶æ»ú»òÅÄÕÕ¡£
+è¾“å…¥è‡ªç„¶è¯­è¨€æŒ‡ä»¤ï¼Œå¦‚ï¼š
+- è¯·å¸®æˆ‘æ‹å¼ ç…§ç‰‡
+- æ‘„åƒå¤´å‘å·¦è½¬
+- æ‹ä¸€å¼ é£Žæ™¯ç…§
+ç³»ç»Ÿä¼šé€šè¿‡å¤§æ¨¡åž‹è§£æžå‡º JSON æŒ‡ä»¤å¹¶æŽ§åˆ¶èˆµæœºæˆ–æ‹ç…§ã€‚
 
-•0ä6 Í£Ö¹ÔËÐÐ£ºÊ¹ÓÃ Ctrl+C ¼´¿É¹Ø±Õ·þÎñ
+ðŸ§¼ åœæ­¢è¿è¡Œï¼šä½¿ç”¨ Ctrl+C å³å¯å…³é—­æœåŠ¡
